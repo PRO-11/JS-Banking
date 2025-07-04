@@ -215,10 +215,13 @@ const calcDisplaySummary = function (currentaccount) {
   const incomes = currentaccount.movements
     .filter((data) => data > 0)
     .reduce((acc, curr) => curr + acc, 0);
-  const withdraw =
+  let withdraw =
     currentaccount.movements
       .filter((data) => data < 0)
-      .reduce((acc, curr) => curr + acc, 0) * -1;
+      .reduce((acc, curr) => curr + acc, 0);
+      if(withdraw!=0)
+        withdraw*=-1
+    
   const interest = currentaccount.movements
     .filter((data) => data > 0)
     .reduce((acc, curr) => {
